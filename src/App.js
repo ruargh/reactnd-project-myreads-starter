@@ -1,6 +1,27 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
+import BookShelfChanger from './BookShelfChanger'
+
+//let myBook = { 'id' : 'Jhw9Bg42pSMC', 'shelf' : 'wantToRead' }
+//let myBook2 = [ { id : "Jhw9Bg42pSMC", shelf : "wantToRead" } ]
+//let myBook3 = ['Jhw9Bg42pSMC','wantToRead']
+
+const mybook = [
+  {
+    "book" : {
+    "id": "Jhw9Bg42pSMC"
+    },
+    "shelf": "wantToRead"
+  }
+]
+
+let book1 = [
+  {
+    "id": "nggnmAEACAAJ"
+  }
+]
+
 
 class BooksApp extends React.Component {
   state = {
@@ -10,12 +31,14 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: true
+    showSearchPage: false
   }
 
   render() {
     return (
       <div className="app">
+        {console.log(BooksAPI.update(book1,"read"))}
+        {console.log(BooksAPI.search("Tolstoy",5))}
         {this.state.showSearchPage ? (
           <div className="search-books">
             <div className="search-books-bar">
@@ -52,15 +75,7 @@ class BooksApp extends React.Component {
                         <div className="book">
                           <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")' }}></div>
-                            <div className="book-shelf-changer">
-                              <select>
-                                <option value="none" disabled>Move to...</option>
-                                <option value="currentlyReading">Currently Reading</option>
-                                <option value="wantToRead">Want to Read</option>
-                                <option value="read">Read</option>
-                                <option value="none">None</option>
-                              </select>
-                            </div>
+                              <BookShelfChanger />
                           </div>
                           <div className="book-title">To Kill a Mockingbird</div>
                           <div className="book-authors">Harper Lee</div>
