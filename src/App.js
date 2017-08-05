@@ -41,7 +41,7 @@ class BooksApp extends React.Component {
     })
   }
 
-  putInShelf = (book) => {
+  removeBook = (book) => {
     this.setState((state) => ({
       books: state.books.filter((b) => b.id !== book.id)
     }))
@@ -51,7 +51,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <ListBooks
-          onToggleShelf={this.putInShelf}
+          onClickImage={this.removeBook}
           books={this.state.books}
         />
       </div>

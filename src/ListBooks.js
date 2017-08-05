@@ -5,7 +5,7 @@ import BookShelfChanger from './BookShelfChanger'
 class ListBooks extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
-    onToggleShelf: PropTypes.func.isRequired
+    onClickImage: PropTypes.func.isRequired
   }
 
     state = {
@@ -13,7 +13,7 @@ class ListBooks extends Component {
     }
 
   render() {
-    const { books, onToggleShelf } = this.props
+    const { books, onClickImage } = this.props
     const { query } = this.state
 
     /**
@@ -50,8 +50,11 @@ class ListBooks extends Component {
                         <li key={book.id} >
                             <div className="book">
                                 <div className="book-top">
-                                <div className="book-cover" onClick={() => onToggleShelf(book)} style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                    <BookShelfChanger />
+                                <div className="book-cover" onClick={() => onClickImage(book)} style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                                    <BookShelfChanger
+                                        onToggleShelf={this.putInShelf}
+                                        book={this.state.query}
+                                    />
                                 </div>
                             <div className="book-title">{ book.title }</div>
                             {book.authors.map((author, index) => (
@@ -75,8 +78,11 @@ class ListBooks extends Component {
                         <li key={book.id}>
                             <div className="book">
                                 <div className="book-top">
-                                <div className="book-cover" onClick={() => onToggleShelf(book)} style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                    <BookShelfChanger />
+                                <div className="book-cover" onClick={() => onClickImage(book)} style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                                    <BookShelfChanger
+                                        onToggleShelf={this.putInShelf}
+                                        book={this.state.query}
+                                    />
                                 </div>
                             <div className="book-title">{ book.title }</div>
                             {book.authors.map((author, index) => (
@@ -100,8 +106,11 @@ class ListBooks extends Component {
                         <li key={book.id}>
                             <div className="book">
                                 <div className="book-top">
-                                <div className="book-cover" onClick={() => onToggleShelf(book)} style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                    <BookShelfChanger />
+                                <div className="book-cover" onClick={() => onClickImage(book)} style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                                    <BookShelfChanger
+                                        onToggleShelf={this.putInShelf}
+                                        book={this.state.query}
+                                    />
                                 </div>
                             <div className="book-title">{ book.title }</div>
                             {book.authors.map((author, index) => (
