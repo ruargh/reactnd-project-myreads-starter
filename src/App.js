@@ -3,26 +3,6 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import ListBooks from './ListBooks'
 
-//let myBook = { 'id' : 'Jhw9Bg42pSMC', 'shelf' : 'wantToRead' }
-//let myBook2 = [ { id : "Jhw9Bg42pSMC", shelf : "wantToRead" } ]
-//let myBook3 = ['Jhw9Bg42pSMC','wantToRead']
-
-const mybook = [
-  {
-    "book" : {
-    "id": "Jhw9Bg42pSMC"
-    },
-    "shelf": "wantToRead"
-  }
-]
-
-let book1 = [
-  {
-    "id": "nggnmAEACAAJ"
-  }
-]
-
-
 class BooksApp extends React.Component {
   state = {
     /**
@@ -32,7 +12,7 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
-    books: [],
+    books: []
   }
 
   componentDidMount() {

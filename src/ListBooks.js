@@ -9,7 +9,20 @@ class ListBooks extends Component {
   }
 
     state = {
-        query: ''
+        query: '',
+        shelf: ''
+    }
+
+    /**
+     * TODO: Change global state to reflect in which
+     * shelf the book is located when set via
+     * book-shelf-changer
+     * 
+     */
+    putInShelf = (book) => {
+        this.setState((state) => ({
+            shelf: state.shelf
+        }))
     }
 
   render() {
@@ -23,13 +36,14 @@ class ListBooks extends Component {
      * 
      */
     let showBooksCR
-    showBooksCR = books.filter((b) => b.shelf == 'currentlyReading')
+    showBooksCR = books.filter((b) => b.shelf === 'currentlyReading')
 
     let showBooksWTR
-    showBooksWTR = books.filter((b) => b.shelf == 'wantToRead')
+    showBooksWTR = books.filter((b) => b.shelf === 'wantToRead')
 
     let showBooksR
-    showBooksR = books.filter((b) => b.shelf == 'read')
+    showBooksR = books.filter((b) => b.shelf === 'read')
+
 
     return (
         <div className="list-books">
@@ -53,7 +67,7 @@ class ListBooks extends Component {
                                 <div className="book-cover" onClick={() => onClickImage(book)} style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                     <BookShelfChanger
                                         onToggleShelf={this.putInShelf}
-                                        book={this.state.query}
+                                        shelf={book.shelf}
                                     />
                                 </div>
                             <div className="book-title">{ book.title }</div>
@@ -81,7 +95,7 @@ class ListBooks extends Component {
                                 <div className="book-cover" onClick={() => onClickImage(book)} style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                     <BookShelfChanger
                                         onToggleShelf={this.putInShelf}
-                                        book={this.state.query}
+                                        shelf={book.shelf}
                                     />
                                 </div>
                             <div className="book-title">{ book.title }</div>
@@ -109,7 +123,7 @@ class ListBooks extends Component {
                                 <div className="book-cover" onClick={() => onClickImage(book)} style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                     <BookShelfChanger
                                         onToggleShelf={this.putInShelf}
-                                        book={this.state.query}
+                                        shelf={book.shelf}
                                     />
                                 </div>
                             <div className="book-title">{ book.title }</div>
