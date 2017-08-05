@@ -1,7 +1,6 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import BookShelfChanger from './BookShelfChanger'
 import ListBooks from './ListBooks'
 
 //let myBook = { 'id' : 'Jhw9Bg42pSMC', 'shelf' : 'wantToRead' }
@@ -33,7 +32,7 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
-    books: []
+    books: [],
   }
 
   componentDidMount() {
@@ -42,10 +41,17 @@ class BooksApp extends React.Component {
     })
   }
 
+  putInShelf = (book) => {
+    this.setState((state) => ({
+      books: state.books.filter((b) => b.id !== book.id)
+    }))
+  }
+
   render() {
     return (
       <div className="app">
         <ListBooks
+          onToggleShelf={this.putInShelf}
           books={this.state.books}
         />
       </div>
