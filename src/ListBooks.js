@@ -23,9 +23,9 @@ class SearchBooks extends Component {
        }
     ]
 
-
-    showBooks = books
-    showBookshelves = bookshelves
+    
+    let showBooks = books
+    let showBookshelves = bookshelves
 
     return (
 
