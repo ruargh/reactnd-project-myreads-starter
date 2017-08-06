@@ -1,13 +1,13 @@
 import React from 'react'
-import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchBooks from './SearchBooks'
 import ListBooks from './ListBooks'
+import * as BooksAPI from './BooksAPI'
 
 class BooksApp extends React.Component {
   state = {
+    screen: 'list',
     books: [],
-    showSearchPage: false
   }
 
   componentDidMount() {
@@ -16,16 +16,28 @@ class BooksApp extends React.Component {
     })
   }
 
+
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <SearchBooks />
-        ) : (
-            <ListBooks
+
+        {this.state.screen === 'search' && (
+          <SearchBooks
+          onNavigateToList={() => {
+            this.setState({ screen: 'list' })
+          }}
+          />
+        )}
+
+        {this.state.screen === 'list' && (
+          <ListBooks
           books={this.state.books}
-            />
-          )}
+          onNavigateToSearch={() => {
+            this.setState({ screen: 'search' })
+          }}
+          />
+        )}
+
       </div>
     )
   }

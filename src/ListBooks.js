@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Bookshelf from './Bookshelf'
 
-class SearchBooks extends Component {
+class ListBooks extends Component {
   static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    onNavigateToSearch: PropTypes.func.isRequired
   }
 
   render() {
@@ -62,7 +64,11 @@ class SearchBooks extends Component {
           </div>
         </div>
         <div className="open-search">
-          <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+          {/* <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a> */}
+          <Link
+          to="/search"
+          onClick={this.props.onNavigateToSearch}
+          >Add a book</Link>
         </div>
       </div>
 
@@ -70,4 +76,4 @@ class SearchBooks extends Component {
   }
 }
 
-export default SearchBooks
+export default ListBooks
