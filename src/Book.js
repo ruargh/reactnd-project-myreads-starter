@@ -3,14 +3,31 @@ import PropTypes from 'prop-types'
 import BookshelfControl from './BookshelfControl'
 
 class Book extends Component {
+    constructor(props) {
+        super(props)
+        this.handleShelfChange = this.handleShelfChange.bind(this)
+    }
+
   static propTypes = {
     books: PropTypes.array.isRequired,
+    removeBook: PropTypes.func.isRequired
   }
+
+  handleShelfChange(b) {
+      console.log(b)
+  }
+
+    handleBookUpdate(bookObj, shelfStr) {
+        console.log(bookObj)
+        console.log(shelfStr)
+    }
+
 
   render() {
     const { books } = this.props
     
     let showBooks = books
+
 
     return (
             
@@ -22,9 +39,10 @@ class Book extends Component {
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }} />
                             <BookshelfControl
                             shelf={book.shelf}
+                            onShelfChange={(e) => { this.handleBookUpdate(book, e.target.value) }}
                             />
                         </div>
-                        <div className="book-title">
+                        <div onClick={() => this.props.removeBook(book)}  className="book-title">
                         {book.title}
                         </div>
                         {book.authors.map((author, index) =>
