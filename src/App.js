@@ -7,7 +7,13 @@ import ListBooks from './ListBooks'
 class BooksApp extends React.Component {
   state = {
     books: [],
-    showSearchPage: true
+    showSearchPage: false
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
   }
 
   render() {
