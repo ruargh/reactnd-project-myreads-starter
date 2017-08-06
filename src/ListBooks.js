@@ -11,22 +11,6 @@ class ListBooks extends Component {
 
   render() {
     const { books, removeBook } = this.props
-    
-    
-    // const { bookshelves } = [ 
-    //   {
-    //     title: 'Currently Reading',
-    //     shelf: 'currentlyReading'
-    //    },
-    //   {
-    //     title: 'Want To Read',
-    //     shelf: 'wantToRead'
-    //    },
-    //   {
-    //     title: 'Read',
-    //     shelf: 'read'
-    //    }
-    // ]
 
     let showBooks = books
 
@@ -38,14 +22,6 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-
-              {/* { showBookshelves.map(( shelfObj, index ) => {
-              <Bookshelf
-              bookshelfTitle={shelfObj.title}
-              books={showBooks.filter(b => b.shelf === shelfObj.shelf)}
-                />
-
-            })} */}
 
             <Bookshelf
               bookshelfTitle={ 'Currently Reading' } 
@@ -67,7 +43,7 @@ class ListBooks extends Component {
           </div>
         </div>
         <div className="open-search">
-          {/* <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a> */}
+
           <Link
           to="/search"
           >Add a book</Link>

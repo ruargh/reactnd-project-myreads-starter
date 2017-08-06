@@ -17,16 +17,12 @@ class Book extends Component {
       console.log(b)
   }
 
-    handleBookUpdate(bookObj, shelfStr) {
-        console.log(bookObj)
-        console.log(shelfStr)
-    }
-
 
   render() {
     const { books } = this.props
     
     let showBooks = books
+    let newShelf = ''
 
 
     return (
@@ -39,10 +35,10 @@ class Book extends Component {
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }} />
                             <BookshelfControl
                             shelf={book.shelf}
-                            onShelfChange={(e) => { this.handleBookUpdate(book, e.target.value) }}
+                            onShelfChange={this.handleShelfChange}
                             />
                         </div>
-                        <div onClick={() => this.props.removeBook(book)}  className="book-title">
+                        <div className="book-title">
                         {book.title}
                         </div>
                         {book.authors.map((author, index) =>
