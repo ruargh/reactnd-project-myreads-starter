@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 import './App.css'
 import SearchBooks from './SearchBooks'
 import ListBooks from './ListBooks'
@@ -6,7 +7,6 @@ import * as BooksAPI from './BooksAPI'
 
 class BooksApp extends React.Component {
   state = {
-    screen: 'list',
     books: [],
   }
 
@@ -21,22 +21,15 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
 
-        {this.state.screen === 'search' && (
-          <SearchBooks
-          onNavigateToList={() => {
-            this.setState({ screen: 'list' })
-          }}
-          />
-        )}
+        <Route path="/search" render={() => (
+          <SearchBooks/>
+        )}/>
 
-        {this.state.screen === 'list' && (
+        <Route exact path="/" render={() => (
           <ListBooks
           books={this.state.books}
-          onNavigateToSearch={() => {
-            this.setState({ screen: 'search' })
-          }}
           />
-        )}
+        )}/>
 
       </div>
     )

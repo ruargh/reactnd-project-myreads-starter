@@ -6,7 +6,6 @@ import Bookshelf from './Bookshelf'
 class ListBooks extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
-    onNavigateToSearch: PropTypes.func.isRequired
   }
 
   render() {
@@ -67,7 +66,6 @@ class ListBooks extends Component {
           {/* <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a> */}
           <Link
           to="/search"
-          onClick={this.props.onNavigateToSearch}
           >Add a book</Link>
         </div>
       </div>
