@@ -10,11 +10,11 @@ class Book extends Component {
 
   static propTypes = {
     books: PropTypes.array.isRequired,
-    removeBook: PropTypes.func.isRequired
   }
 
-  handleShelfChange(b) {
-      console.log(b)
+  handleShelfChange(book, shelf) {
+    console.log(book, shelf)
+    this.props.onBookChange(book, shelf)
   }
 
 
@@ -22,7 +22,6 @@ class Book extends Component {
     const { books } = this.props
     
     let showBooks = books
-    let newShelf = ''
 
 
     return (
@@ -35,6 +34,7 @@ class Book extends Component {
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }} />
                             <BookshelfControl
                             shelf={book.shelf}
+                            id={book.id}
                             onShelfChange={this.handleShelfChange}
                             />
                         </div>

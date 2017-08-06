@@ -6,28 +6,36 @@ import ListBooks from './ListBooks'
 import * as BooksAPI from './BooksAPI'
 
 class BooksApp extends React.Component {
+    constructor(props) {
+        super(props)
+        this.updateBook = this.updateBook.bind(this)
+    }
+
+
   state = {
     books: [],
   }
 
   componentDidMount() {
+    this.refreshBooks()
+  }
+
+
+  updateBook(book, shelf) {    
+    BooksAPI.get(book).then( book => {
+      BooksAPI.update(book,shelf).then( () => {
+        this.refreshBooks()  
+      });
+    });
+}
+
+
+
+  refreshBooks() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
   }
-
-  updateBook(book, shelf) {
-    BooksAPI.update(book, shelf).then(book => {
-      this.setState(state => ({    
-        books: state.books.concat([ book ])
-      }))
-        this.getAll();
-    }).catch(function(e) {
-       console.log(e);
-   });
-  }
-
-
 
   render() {
     return (
@@ -42,7 +50,7 @@ class BooksApp extends React.Component {
           books={this.state.books}
           onUpdateBook={(book, shelf) => {
             this.updateBook(book, shelf)
-            history.pushState('/')
+            history.pushState('/', '/')
           }}
           />
         )}/>

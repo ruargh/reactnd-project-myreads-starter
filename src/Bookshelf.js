@@ -3,9 +3,19 @@ import PropTypes from 'prop-types'
 import Book from './Book'
 
 class Bookshelf extends Component {
+  constructor(props) {
+      super(props)
+      this.handleBookChange = this.handleBookChange.bind(this)
+  }
+
   static propTypes = {
     books: PropTypes.array.isRequired,
     bookshelfTitle: PropTypes.string
+  }
+
+  handleBookChange(book, shelf) {
+      console.log(book, shelf)
+      this.props.onUpdateBook(book, shelf)
   }
 
   render() {
@@ -21,6 +31,7 @@ class Bookshelf extends Component {
         <div className="bookshelf-books">
             <Book
               books={showBooks}
+              onBookChange={this.handleBookChange}
               />
         </div>
       </div>

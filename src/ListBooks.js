@@ -4,13 +4,23 @@ import PropTypes from 'prop-types'
 import Bookshelf from './Bookshelf'
 
 class ListBooks extends Component {
+  constructor(props) {
+      super(props)
+      this.handleBookUpdate = this.handleBookUpdate.bind(this)
+  }
+
   static propTypes = {
     books: PropTypes.array.isRequired,
-    removeBook: PropTypes.func.isRequired
+  }
+
+  handleBookUpdate(book, shelf) {
+      console.log(book, shelf)
+      this.props.onUpdateBook(book, shelf)
+
   }
 
   render() {
-    const { books, removeBook } = this.props
+    const { books } = this.props
 
     let showBooks = books
 
@@ -26,17 +36,17 @@ class ListBooks extends Component {
             <Bookshelf
               bookshelfTitle={ 'Currently Reading' } 
               books={showBooks.filter(b => b.shelf === 'currentlyReading' )}
-              removeBook={this.props.removeBook}
+              onUpdateBook={this.handleBookUpdate}
               />
             <Bookshelf
               bookshelfTitle={ 'Want To Read' } 
               books={showBooks.filter(b => b.shelf === 'wantToRead' )}
-              removeBook={this.props.removeBook}
+              onUpdateBook={this.handleBookUpdate}
               />
             <Bookshelf
               bookshelfTitle={ 'Read' } 
               books={showBooks.filter(b => b.shelf === 'read' )}
-              removeBook={this.props.removeBook}
+              onUpdateBook={this.handleBookUpdate}
               />
 
 

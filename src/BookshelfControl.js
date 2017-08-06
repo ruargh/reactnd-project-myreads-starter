@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
 class BookshelfControl extends Component {
     constructor(props) {
@@ -7,16 +6,19 @@ class BookshelfControl extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
-    handleChange(e) {
-        this.props.onShelfChange(e.target.value)
+
+    handleChange(id, shelf) {
+        console.log(this.props.id)
+        this.props.onShelfChange(this.props.id, shelf)
     }
 
   render() {
-    const { shelf } = this.props
+    const { shelf, id } = this.props
 
     return (
         <div className="book-shelf-changer">
-            <select value={shelf} onChange={this.handleChange} >
+            <select value={shelf} onChange={ (e) => {
+                this.handleChange(id, e.target.value)}} >
                 <option value="none" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
