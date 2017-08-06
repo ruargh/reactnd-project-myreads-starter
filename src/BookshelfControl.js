@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class BookShelfChanger extends Component {
+class BookshelfControl extends Component {
 
   render() {
-    //const { onToggleShelf, shelf } = this.props
     const { shelf } = this.props
 
     return (
@@ -22,4 +21,4 @@ class BookShelfChanger extends Component {
   }
 }
 
-export default BookShelfChanger
+export default BookshelfControl
