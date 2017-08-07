@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import Book from './Book'
 import escapeRegExp from 'escape-string-regexp'
 import * as BooksAPI from './BooksAPI'
@@ -11,7 +10,6 @@ class SearchBooks extends Component {
       this.handleShelfChange = this.handleShelfChange.bind(this)
   }
 
-
   state = {
     sbooks: [],
     query: 'Art'
@@ -20,7 +18,6 @@ class SearchBooks extends Component {
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
   }
-
 
   componentDidMount() {
     this.refreshBooks()
@@ -43,15 +40,15 @@ class SearchBooks extends Component {
     let showBooks = this.state.sbooks
 
     let showingBooks
+
     if (query) {
       const match = new RegExp(escapeRegExp(query), 'i')
-      showingBooks= showBooks.filter((book) => match.test(book.title))
+      showingBooks = showBooks.filter((book) => match.test(book.title))
     } else {
       showingBooks = showBooks
     }
     
     return (
-
 
       <div className="search-books">
         <div className="search-books-bar">

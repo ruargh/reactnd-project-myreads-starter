@@ -11,7 +11,6 @@ class BooksApp extends React.Component {
         this.updateBook = this.updateBook.bind(this)
     }
 
-
   state = {
     books: [],
   }
@@ -20,7 +19,6 @@ class BooksApp extends React.Component {
     this.refreshBooks()
   }
 
-
   updateBook(book, shelf) {    
     BooksAPI.get(book).then( book => {
       BooksAPI.update(book,shelf).then( () => {
@@ -28,8 +26,6 @@ class BooksApp extends React.Component {
       })
     })
 }
-
-
 
   refreshBooks() {
     BooksAPI.getAll().then((books) => {
