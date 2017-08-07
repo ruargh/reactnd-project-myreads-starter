@@ -25,8 +25,8 @@ class BooksApp extends React.Component {
     BooksAPI.get(book).then( book => {
       BooksAPI.update(book,shelf).then( () => {
         this.refreshBooks()  
-      });
-    });
+      })
+    })
 }
 
 
@@ -42,7 +42,13 @@ class BooksApp extends React.Component {
       <div className="app">
 
         <Route exact path="/search" render={() => (
-          <SearchBooks/>
+          <SearchBooks
+          books={this.state.books}
+          onUpdateBook={(book, shelf) => {
+            this.updateBook(book, shelf)
+            history.pushState('/', '/')
+          }}
+          />
         )}/>
 
         <Route exact path="/" render={() => (

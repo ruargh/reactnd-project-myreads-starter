@@ -14,7 +14,6 @@ class Bookshelf extends Component {
   }
 
   handleBookChange(book, shelf) {
-      console.log(book, shelf)
       this.props.onUpdateBook(book, shelf)
   }
 

@@ -8,7 +8,6 @@ class BookshelfControl extends Component {
 
 
     handleChange(id, shelf) {
-        console.log(this.props.id)
         this.props.onShelfChange(this.props.id, shelf)
     }
 

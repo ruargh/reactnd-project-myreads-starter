@@ -13,7 +13,6 @@ class Book extends Component {
   }
 
   handleShelfChange(book, shelf) {
-    console.log(book, shelf)
     this.props.onBookChange(book, shelf)
   }
 
