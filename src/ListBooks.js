@@ -13,6 +13,7 @@ class ListBooks extends Component {
     books: PropTypes.array.isRequired,
   }
 
+
   handleBookUpdate(book, shelf) {
       this.props.onUpdateBook(book, shelf)
 
@@ -20,6 +21,7 @@ class ListBooks extends Component {
 
   render() {
     const { books } = this.props
+    const shelves = { currentlyReading: 'Currently Reading' , read: 'Read', wantToRead: 'Want to Read' }
 
     let showBooks = books
 
@@ -32,22 +34,14 @@ class ListBooks extends Component {
         <div className="list-books-content">
           <div>
 
-            <Bookshelf
-              bookshelfTitle={ 'Currently Reading' } 
-              books={showBooks.filter(b => b.shelf === 'currentlyReading' )}
-              onUpdateBook={this.handleBookUpdate}
+            {Object.keys(shelves).map(shelfKey =>
+              <Bookshelf
+                bookshelfTitle={shelves[shelfKey]}
+                books={showBooks.filter(b => b.shelf === shelfKey )}
+                onUpdateBook={this.handleBookUpdate}
+                key={shelfKey}
               />
-            <Bookshelf
-              bookshelfTitle={ 'Want To Read' } 
-              books={showBooks.filter(b => b.shelf === 'wantToRead' )}
-              onUpdateBook={this.handleBookUpdate}
-              />
-            <Bookshelf
-              bookshelfTitle={ 'Read' } 
-              books={showBooks.filter(b => b.shelf === 'read' )}
-              onUpdateBook={this.handleBookUpdate}
-              />
-
+            )}
 
           </div>
         </div>
