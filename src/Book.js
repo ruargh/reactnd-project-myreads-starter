@@ -26,7 +26,7 @@ class Book extends Component {
     return (
 
           <ol className="books-grid">
-            {showBooks ? showBooks.map(book =>
+            {showBooks.map(book =>
               <li key={book.id}>
                 <div className="book">
                   <div className="book-top">
@@ -43,20 +43,17 @@ class Book extends Component {
 
 
 
-                  {book.authors ? book.authors.map((author, index) =>
+                  {book.authors.map((author, index) =>
 
                     <div key={index} className="book-authors">
                       {author}
                     </div>
 
-                  ) :
-                  <div className="book-authors">
-                    No Author
-                  </div> }
+                  )}
 
                 </div>
               </li>
-            ) : ''}
+            )}
         </ol>
     )
   }
