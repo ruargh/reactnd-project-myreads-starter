@@ -7,16 +7,17 @@ import * as BooksAPI from './BooksAPI'
 class SearchBooks extends Component {
   constructor(props) {
       super(props)
-      this.handleShelfChange = this.handleShelfChange.bind(this)
+      this.handleBookUpdate = this.handleBookUpdate.bind(this)
   }
 
   state = {
     sbooks: [],
-    query: 'Art'
+    query: ''
   }
 
   updateQuery = (query) => {
     this.setState({ query: query.trim() })
+    this.refreshBooks()
   }
 
   componentDidMount() {
@@ -29,13 +30,13 @@ class SearchBooks extends Component {
     })
   }
 
-  handleShelfChange(book, shelf) {
-    this.props.onBookChange(book, shelf)
+  handleBookUpdate(book, shelf) {
+    this.props.onUpdateBook(book, shelf)
   }
 
   render() {
 
-    const { books } = this.props
+    //const { books } = this.props
     const { query } = this.state
     let showBooks = this.state.sbooks
 
@@ -47,7 +48,7 @@ class SearchBooks extends Component {
     } else {
       showingBooks = showBooks
     }
-    
+
     return (
 
       <div className="search-books">
@@ -62,15 +63,15 @@ class SearchBooks extends Component {
               placeholder="Search by title or author"
               value={query}
               onChange={(event) => this.updateQuery(event.target.value)}
-              />
+            />
 
           </div>
         </div>
         <div className="search-books-results">
-          
+
           <Book
-          books={showBooks}
-          onBookChange={this.handleBookChange}
+            books={showBooks}
+            onBookChange={this.handleBookUpdate}
           />
 
         </div>
