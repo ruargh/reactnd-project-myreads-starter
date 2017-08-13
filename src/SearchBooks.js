@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import Book from './Book'
-import escapeRegExp from 'escape-string-regexp'
 import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends Component {
@@ -15,17 +14,30 @@ class SearchBooks extends Component {
     query: ''
   }
 
-  updateQuery = (query) => {
+  updateQuery = (query, myBooks) => {
     this.setState({ query: query.trim() })
-    this.refreshBooks()
+    this.refreshBooks(myBooks)
   }
 
-  componentDidMount() {
-    this.refreshBooks()
-  }
+  // Not needed anymore
+  // componentDidMount() {
+  //   this.refreshBooks()
+  // }
 
-  refreshBooks() {
+
+/* Function to set book shelf state and display search results
+ * TODO: should refactor into sub components
+ * TODO: Try to reduce iterations required
+ */
+  refreshBooks(myBooks) {
     BooksAPI.search(this.state.query).then((sbooks) => {
+      //first reset all search result books shelf to none
+      sbooks.map( reset => reset.shelf = 'none' )
+      sbooks.map( sb =>
+        myBooks.map(mb =>
+          ( sb.id === mb.id ? sb.shelf = mb.shelf : '' )
+        )
+      )
       this.setState({ sbooks })
     })
   }
@@ -36,18 +48,10 @@ class SearchBooks extends Component {
 
   render() {
 
-    //const { books } = this.props
+    const { books } = this.props
     const { query } = this.state
     let showBooks = this.state.sbooks
-
-    let showingBooks
-
-    if (query) {
-      const match = new RegExp(escapeRegExp(query), 'i')
-      showingBooks = showBooks.filter((book) => match.test(book.title))
-    } else {
-      showingBooks = showBooks
-    }
+    let myBooks = books
 
     return (
 
@@ -62,8 +66,8 @@ class SearchBooks extends Component {
               type="text"
               placeholder="Search by title or author"
               value={query}
-              onChange={(event) => this.updateQuery(event.target.value)}
-            />
+              onChange={(event) => this.updateQuery(event.target.value, myBooks)}
+                />
 
           </div>
         </div>

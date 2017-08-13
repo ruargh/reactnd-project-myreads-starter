@@ -12,7 +12,7 @@ class BooksApp extends React.Component {
     }
 
   state = {
-    books: [],
+    books: []
   }
 
   componentDidMount() {
