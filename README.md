@@ -20,6 +20,8 @@ npm start
 Upon opening the app will display the current books in your library. You can categorize a book into **Currently Reading, Want to Read & Read**.
 Add more books to your library by searching for books by Author or title using the search page and adding them to one of your bookshelves.
 
+Try searching for: `Art` & `iOS`
+
 ### Important
 The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). These are the _only_ terms that will work with the backend.
 
