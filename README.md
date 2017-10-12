@@ -17,8 +17,8 @@ npm install
 npm start
 ```
 ### Instructions
-Upon opening the app will display the current books in your library. You can categorize a book into **Currently Reading, Want to Read & Read**.
-Add more books to your library by searching for books by Author or title using the search page and adding them to one of your bookshelves.
+Upon opening the app will display the current books in your library. You can categorize a book into **Currently Reading, Want to Read & Read** bookshelves using the books drop-down.
+Add more books to your library by searching for books using the search page and adding them to one of your bookshelves.
 
 Try searching for: `Art` & `iOS`
 

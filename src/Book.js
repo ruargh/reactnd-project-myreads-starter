@@ -30,7 +30,7 @@ class Book extends Component {
               <li key={book.id}>
                 <div className="book">
                   <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }} />
+                    <div className="book-cover" style={{ backgroundImage: `url(${book.imageLinks.thumbnail})` }} />
                     <BookshelfControl
                       shelf={book.shelf}
                       id={book.id}
@@ -41,7 +41,7 @@ class Book extends Component {
                     {book.title}
                   </div>
 
-                  
+
                   <div className="book-authors">
                     {book.authors ? book.authors.join(', ') : ''}
                   </div>
