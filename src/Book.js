@@ -30,7 +30,7 @@ class Book extends Component {
               <li key={book.id}>
                 <div className="book">
                   <div className="book-top">
-                    <div className="book-cover" style={{ backgroundImage: `url(${book.imageLinks.thumbnail})` }} />
+                    <div className="book-cover" style={{ width: '100%', height: '100%', backgroundImage: `url(${book.imageLinks.thumbnail})` }} />
                     <BookshelfControl
                       shelf={book.shelf}
                       id={book.id}
