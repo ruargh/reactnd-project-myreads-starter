@@ -44,6 +44,22 @@ class SearchBooks extends Component {
 
   handleBookUpdate(book, shelf) {
     this.props.onUpdateBook(book, shelf)
+
+    BooksAPI.getAll().then((myBooks) => {
+
+    BooksAPI.search(this.state.query).then((sbooks) => {
+      //first reset all search result books shelf to none
+      sbooks.map( reset => reset.shelf = 'none' )
+      sbooks.map( sb =>
+        myBooks.map(mb =>
+          ( sb.id === mb.id ? sb.shelf = mb.shelf : '' )
+        )
+      )
+      this.setState({ sbooks })
+    })
+        
+    })
+    
   }
 
   render() {

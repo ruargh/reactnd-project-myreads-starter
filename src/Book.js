@@ -13,8 +13,8 @@ class Book extends Component {
     books: PropTypes.array.isRequired,
   }
 
-  handleShelfChange(book, shelf) {
-    this.props.onBookChange(book, shelf)
+  handleShelfChange(id, shelf) {
+    this.props.onBookChange(id, shelf)
   }
 
 
