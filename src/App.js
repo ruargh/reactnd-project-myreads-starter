@@ -12,12 +12,16 @@ class BooksApp extends React.Component {
     }
 
   state = {
-    books: []
+    books: [],
+    sbooks: [],
+    query: ''
   }
 
   componentDidMount() {
     this.refreshBooks()
+    this.updateSearchBooks(this.state.books)
   }
+
 
   updateBook(book, shelf) {
     BooksAPI.get(book).then( book => {
@@ -27,10 +31,30 @@ class BooksApp extends React.Component {
     })
 }
 
+updateQuery = (query) => {
+  this.setState({ query: query.trim() })
+  this.updateSearchBooks(this.state.books)
+}
+
+updateSearchBooks(myBooks) {
+  BooksAPI.search(this.state.query).then((sbooks) => {
+    //first reset all search result books shelf to none
+    sbooks.map( reset => reset.shelf = 'none' )
+    sbooks.map( sb =>
+      myBooks.map(mb =>
+        ( sb.id === mb.id ? sb.shelf = mb.shelf : '' )
+      )
+    )
+    this.setState({ sbooks })
+  })
+}
+
   refreshBooks() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
+      this.updateSearchBooks(books)
     })
+    
   }
 
   render() {
@@ -40,6 +64,9 @@ class BooksApp extends React.Component {
         <Route exact path="/search" render={() => (
           <SearchBooks
             books={this.state.books}
+            sbooks={this.state.sbooks}
+            query={this.state.query}
+            updateQuery={(query) => {this.updateQuery(query)}}
             onUpdateBook={(book, shelf) => {
               this.updateBook(book, shelf)
 
